@@ -14,17 +14,20 @@ fn get_extension_from_filename(filename: &str) -> Option<&str> {
 
 pub fn print_paths(paths: &mut ReadDir, args: &mut Vec<String>) -> Vec<String> {
 
+    let base_dir = &args[0].to_owned();
     let b = paths.into_iter().map(|x| {
         let x = x.unwrap().path().display().to_string();
         let original_path = x.as_str();
+
         let new_path = x
             .as_str()
             .replace(".rs", "")
-            .replace("src/", "history/");
-        println!("Copying {} to {}", original_path, new_path);
+            .replace("src", &base_dir);
+        println!("Copying {} to history/{}/", original_path, new_path);
         x
     }).collect::<Vec<String>>();
 
+    println!("{:?}", args);
     // println!("Args are - {:?}", args);
     b
     // b = b.coll
