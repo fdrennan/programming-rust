@@ -4,4 +4,4 @@ copy:
 lazysave:
 	git add --all
 	git commit -m 'Lazy save'
-	git push origin main
+	git push
